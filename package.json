@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha spec",
     "setup-dbs": "psql -f db/setup.sql",
     "migrate": "knex migrate:rollback && knex migrate:latest",
     "seed-dev": "npm run migrate && knex seed:run",
