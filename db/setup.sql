@@ -1,0 +1,5 @@
+DROP DATABASE IF EXISTS gitgram_test;
+DROP DATABASE IF EXISTS gitgram;
+
+CREATE DATABASE gitgram_test;
+CREATE DATABASE gitgram;
