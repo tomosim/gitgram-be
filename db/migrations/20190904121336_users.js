@@ -1,6 +1,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable("users", user => {
     user.string("username").primary();
+    user.string("name");
     user.string("avatar_url");
   });
 };
