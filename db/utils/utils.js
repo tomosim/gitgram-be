@@ -6,3 +6,12 @@ exports.formatRepositoryData = data => {
   });
   return formattedData;
 };
+
+exports.createLookupTable = (rows, key, value) => {
+  if (rows.length === 0) return {};
+  const lookupTable = {};
+  rows.forEach(row => {
+    lookupTable[row[key]] = row[value];
+  });
+  return lookupTable;
+};
