@@ -1,5 +1,10 @@
 const { userData, languageData, repositoryData } = require("../data");
-const { formatRepositoryData } = require("../utils/utils");
+const {
+  formatRepositoryData,
+  createLookupTable,
+  createJunctionTable
+} = require("../utils/utils");
+
 exports.seed = function(connection) {
   return connection("users")
     .insert(userData)
@@ -14,9 +19,20 @@ exports.seed = function(connection) {
         .returning("*");
       return Promise.all([langPromise, repoPromise]);
     })
-    .then(mystery => {
-      console.log(mystery);
-    });
+    .then(([langRows, repoRows]) => {
+      console.log(repoRows);
+      const langLookup = createLookupTable(langRows, "name", "language_id");
+      const repoLookup = createLookupTable(repoRows, "title", "repository_id");
+      const juncTable = createJunctionTable(
+        repositoryData,
+        repoLookup,
+        langLookup
+      );
+      return connection("repo-lang")
+        .insert(juncTable)
+        .returning("*");
+    })
+    .then(console.log);
 };
 
 //HAVE: name, owner, description, languages
