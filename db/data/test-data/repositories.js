@@ -17,7 +17,7 @@ module.exports = [
     owner: "weegembump",
     description:
       "clone of IBM's watson built using machine learning python packages and hosted using node",
-    languages: ["Node", "python"]
+    languages: ["Node", "Python"]
   },
   {
     name: "my-custom-myspace-HTML-snippets",
