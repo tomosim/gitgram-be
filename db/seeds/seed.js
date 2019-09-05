@@ -8,9 +8,7 @@ const {
 exports.seed = function(connection) {
   return connection("users")
     .insert(userData)
-    .returning("*")
-    .then(userRows => {
-      console.log(userRows);
+    .then(() => {
       const langPromise = connection("languages")
         .insert(languageData)
         .returning("*");
@@ -28,11 +26,8 @@ exports.seed = function(connection) {
         repoLookup,
         langLookup
       );
-      return connection("repo-lang")
-        .insert(juncTable)
-        .returning("*");
-    })
-    .then(console.log);
+      return connection("repo-lang").insert(juncTable);
+    });
 };
 
 //HAVE: name, owner, description, languages
